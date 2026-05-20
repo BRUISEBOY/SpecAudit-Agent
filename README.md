@@ -36,7 +36,7 @@ python compliance_agent.py \
 
 ## 支持格式
 
-- PDF：PyMuPDF 提取 segments，启发式生成结构，不依赖 PageIndex 原 LLM TOC。
+- PDF：PyMuPDF 提取 segments，启发式生成结构。
 - Word：解析 docx XML，按 Heading 样式构树。
 - Excel：解析 xlsx XML，按 sheet/cell 生成结构和 segments。
 - Markdown：按 `#` 标题构树。
