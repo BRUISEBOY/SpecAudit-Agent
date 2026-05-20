@@ -275,7 +275,7 @@ def _locator_for_range(segments, pages, start_char, end_char):
 
 def add_char_ranges_to_pdf_structure(structure, char_index):
     """
-    Add start_char/end_char/locator to the existing PageIndex tree.
+    Add start_char/end_char/locator to an existing PDF structure tree.
 
     The legacy start_index/end_index page fields are kept for compatibility.
     start_char is tightened by matching the title inside the start page.

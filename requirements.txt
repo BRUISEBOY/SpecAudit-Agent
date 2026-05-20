@@ -1,3 +1,4 @@
 openai-agents
 pymupdf==1.26.4
 PyPDF2==3.0.1
+PyYAML==6.0.2

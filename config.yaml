@@ -1,0 +1,14 @@
+openai_api_key: "EMPTY"
+openai_base_url: "http://127.0.0.1:8888/v1"
+model: "Llama-3.3-70B-Instruct"
+
+workspace: "./workspace"
+output: "./results/audit_result.json"
+
+reference_documents:
+  - "./examples/sample_ref.md"
+review_document: "./examples/sample_review.md"
+
+concurrency: 4
+retrieve_top_k: 5
+verbose: true

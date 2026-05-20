@@ -14,8 +14,8 @@ from .word_char_index import build_docx_document
 META_INDEX = "_meta.json"
 
 
-class ComplianceIndexClient:
-    """Lightweight local document index for compliance checking."""
+class SpecAuditIndexClient:
+    """Lightweight local document index for spec audit."""
 
     def __init__(self, workspace):
         self.workspace = Path(workspace).expanduser().resolve()

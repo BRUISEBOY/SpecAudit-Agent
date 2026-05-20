@@ -4,23 +4,49 @@
 
 ## 运行方式
 
-默认连接 OpenAI-compatible 服务：
+默认读取项目根目录的 `config.yaml`。先启动 OpenAI-compatible 模型服务，例如 vLLM：
 
 ```bash
-export OPENAI_BASE_URL=http://127.0.0.1:8888/v1
-export OPENAI_API_KEY=EMPTY
-export COMPLIANCE_MODEL=Llama-3.3-70B-Instruct
+--served-model-name Llama-3.3-70B-Instruct --port 8888
 ```
 
 运行：
 
 ```bash
-python compliance_agent.py \
+uv run python spec_audit_agent.py --config ./config.yaml
+```
+
+也可以用命令行参数覆盖配置文件中的文档路径和运行参数：
+
+```bash
+uv run python spec_audit_agent.py \
+  --config ./config.yaml \
   --reference /path/to/spec1.pdf /path/to/spec2.docx \
   --review /path/to/review.docx \
-  --workspace ./workspace \
-  --output ./results/audit_result.json \
-  --concurrency 4
+  --output ./results/audit_result.json
+```
+
+配置优先级：命令行参数 > 环境变量 > `config.yaml` > 代码默认值。
+
+## 配置文件
+
+`config.yaml` 示例：
+
+```yaml
+openai_api_key: "EMPTY"
+openai_base_url: "http://127.0.0.1:8888/v1"
+model: "Llama-3.3-70B-Instruct"
+
+workspace: "./workspace"
+output: "./results/audit_result.json"
+
+reference_documents:
+  - "./examples/sample_ref.md"
+review_document: "./examples/sample_review.md"
+
+concurrency: 4
+retrieve_top_k: 5
+verbose: true
 ```
 
 ## 核心流程
@@ -33,6 +59,7 @@ python compliance_agent.py \
    - `get_document(doc_id)`
    - `get_document_structure(doc_id)`
    - `get_text_by_range(doc_id, start_char, end_char)`
+   - `get_relevant_ranges(query, top_k)`
 
 ## 支持格式
 
